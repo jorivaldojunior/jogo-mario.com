@@ -1,8 +1,13 @@
+
+
+
+/* Fontes do jogo */
 @font-face {
     font-family: "Super Mario World";
     src: url(/fontes/SuperMarioWorld.ttf);
 }
 
+/* Animações */
 @keyframes animarInimigo {
     from {
         right: -100px;
@@ -11,63 +16,64 @@
         right: 105%;
     }
 }
-
 @keyframes puloPersonagem {
     0% {
         bottom: 70px;
     }
     50% {
-        bottom: 240px;
-    }
-    60% {
-        bottom: 240px;
-    }
-    70% {
-        bottom: 240px;
-    }
-    80% {
-        bottom: 240px;
-    }
-    90% {
-        bottom: 240px;
+        bottom: 180px; /* Altura máxima do pulo */
     }
     100% {
         bottom: 70px;
     }
 }
 
+.puloPersonagem {
+    animation: puloPersonagem 500ms ease-out; /* Deve corresponder ao tempo no JavaScript */
+}
+
+
+/* Reset e configuração global */
 * {
     margin: 0;
     padding: 0;
     border: none;
     outline: none;
     box-sizing: border-box;
-    font-family: "Super Mario World";
+    font-family: "Super Mario World", sans-serif;
     font-size: 24px;
 }
 
+body {
+    overflow: hidden; /* Impede scroll da página */
+}
+
+/* Animação do personagem */
 .puloPersonagem {
     animation: puloPersonagem 500ms ease-out;
 }
 
+/* Animação do inimigo */
 .animarInimigo {
     animation: animarInimigo 18s infinite linear;
 }
 
+/* Estilo do cenário */
 #cenario {
-    position: relative;
+    position: relative; /* Cria contexto para posicionamento absoluto */
     width: 100vw;
     height: 100vh;
     background-image: url(/imagens/cenario.png);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 0 0;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 
+/* Estilo do céu */
 #ceu {
     position: absolute;
     width: 100vw;
@@ -76,8 +82,10 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;
+    z-index: -1; /* Fica atrás de todos os elementos */
 }
 
+/* Estilo do personagem */
 #personagem {
     position: absolute;
     width: 60px;
@@ -85,11 +93,13 @@
     background-image: url(/imagens/marioParadoLadoDireito.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    background-position: 0 0;
-    bottom: 70px;
-    left: 0;
+    background-position: center;
+    bottom: 70px; /* Distância do chão */
+    left: 50px; /* Posição inicial no lado esquerdo */
+    z-index: 5; /* Sobrepõe blocos e inimigos */
 }
 
+/* Estilo do inimigo */
 #inimigo {
     position: absolute;
     width: 50px;
@@ -97,77 +107,89 @@
     background-image: url(/imagens/inimigoLadoEsquerdo.gif);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    background-position: 0 0;
-    bottom: 70px;
-    right: -100px;
+    background-position: center;
+    bottom: 70px; /* Alinhado ao chão */
+    right: -100px; /* Fora da tela inicialmente */
+    z-index: 4;
 }
 
-#menudojogo {
-    position: absolute;
-    width: 1000px;
-    height: 150px;
-    background-image: url(/imagens/menuDoJogo.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: 0 0;
-    top: 20px;
-}
+/* Estilo do bloco de moedas */
 #bloco {
-    position: fixed; /* Muda para fixed para manter na posição da tela */
+    position: absolute; /* Relativo ao cenário */
     width: 50px;
     height: 50px;
     background-image: url(/imagens/bloco.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    background-position: 0 0;
-    right: 400px; /* Distância do lado direito da tela */
-    top: 500px;   /* Distância do topo da tela */
+    background-position: center;
+    top: 400px; /* Acima do personagem */
+    left: 900px; /* Posição no cenário */
+    z-index: 3; /* Fica acima do personagem */
 }
 
+/* Estilo do menu do jogo */
+#menudojogo {
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    background-image: url(/imagens/menuDoJogo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    top: 20px;
+    z-index: 10; /* Sempre visível */
+}
 
+/* Estilo do tempo */
 #tempo {
     position: absolute;
     top: 92px;
     right: 495px;
     color: #ffdf73;
+    font-size: 20px;
 }
 
+/* Estilo das vidas */
 #vidas {
     position: absolute;
     top: 102px;
     left: 300px;
     color: white;
+    font-size: 20px;
 }
 
+/* Estilo das moedas */
 #moedas {
     position: absolute;
     top: 40px;
     right: 250px;
     color: white;
+    font-size: 20px;
 }
 
+/* Estilo dos pontos */
 #pontos {
     position: absolute;
     top: 100px;
     right: 250px;
     color: white;
+    font-size: 20px;
 }
 
-#reiniciar {
-    background-color: blue;
-    color: white;
-    padding: 10px 20px;
-    font-size: 15px;
-    cursor: pointer;
-    display: none;
-}
-
+/* Estilo dos botões */
+#reiniciar,
 #iniciar {
     background-color: blue;
     color: white;
-    border: radius 5px; ;
     padding: 10px 20px;
     font-size: 15px;
+    border-radius: 5px; /* Corrigido o estilo do botão */
     cursor: pointer;
+    text-align: center;
     display: block;
+    margin: 10px auto; /* Centraliza os botões */
+}
+
+#reiniciar {
+    display: none; /* Inicialmente escondido */
 }
