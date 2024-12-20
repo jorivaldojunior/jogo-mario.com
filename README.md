@@ -13,7 +13,7 @@ Abra o arquivo index.html no navegador.
 Clique no botão "Iniciar o Jogo" e divirta-se!
 Pronto para encarar o desafio? 🚀
 
-<h4>Observação este app ainda não esta pronto falta alguns detalhes, em breve estarei liberando e se algum de vcs quiserem me ajudar a terminar esse app, o mario nao esta pulando preciso melhorar essa lógica, fique a vontada para colaborar </h4>
+<h4>Observação este app ainda não esta pronto falta alguns detalhes, em breve estarei liberando e se algum de vcs quiserem me ajudar a terminar esse app, o mario nao esta pulando preciso melhorar essa lógica, fique a vontada para colaborar.</h4>
 
 
 
